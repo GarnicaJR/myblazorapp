@@ -1,0 +1,28 @@
+﻿@page "/fetchdata"
+@inject HttpClient Http
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if(imageURL == null){
+    <p>Loading image</p>
+}
+else{
+    <img src="@imageURL"/>
+}
+
+<button class="btn btn-primary" @onclick="RandomImage">Random image </button>
+
+
+@code {
+    private String imageURL= "https://robohash.org/michel";
+    private int seed = 0;
+
+    private void RandomImage(){
+        char[] alphabet = "abcdefghijklmnopqrztuvwxyz".ToCharArray();
+        seed++;
+        seed = seed % 26;
+
+        imageURL = "https://robohash.org/"+alphabet[seed];
+    }
+
+}
